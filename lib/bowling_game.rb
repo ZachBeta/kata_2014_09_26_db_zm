@@ -5,7 +5,7 @@ class BowlingGame
   end
 
   def roll(pins)
-    if prior_strike?
+    if prior_strike? || prior_spare?
       @score += pins
     end
 
@@ -22,5 +22,9 @@ class BowlingGame
   def prior_strike?
     @rolls[-1] == 10 ||
       @rolls[-2] == 10
+  end
+
+  def prior_spare?
+    @rolls.size >= 2 && @rolls[-1] + @rolls[-2] == 10
   end
 end
