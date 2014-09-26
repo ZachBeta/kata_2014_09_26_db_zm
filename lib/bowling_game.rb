@@ -20,6 +20,20 @@ class NullFrame
   def number; 0; end
 end
 
+class GameOverFrame
+  def initialize(last_frame)
+    @last_frame = last_frame
+  end
+
+  def score
+    @last_frame.score
+  end
+
+  def handle_roll(pins)
+    self
+  end
+end
+
 class Frame
   def initialize(prior_frame = NullFrame.new)
     @prior_frame = prior_frame
@@ -28,8 +42,6 @@ class Frame
   end
 
   def handle_roll(pins)
-    return self if !have_room? && number == 10
-
     @prior_frame.handle_future_roll(pins)
 
     if have_room?
@@ -92,8 +104,12 @@ class Frame
   end
 
   def make_new_frame(pins)
-    Frame.
-      new(self).
-      handle_roll(pins)
+    if number == 10
+      GameOverFrame.new(self)
+    else
+      Frame.
+        new(self).
+        handle_roll(pins)
+    end
   end
 end
