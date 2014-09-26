@@ -1,3 +1,22 @@
+# Challenges to consider
+No conditional statements
+Polymorphism/Object heavy
+TDD As If You Meant It
+
+## Sandi Metz' (abridged) rules for developers
+
+Classes can be no longer than one hundred lines of code.
+Methods can be no longer than five lines of code.
+Pass no more than four parameters into a method. Hash options are parameters.
+
+# Wrapup:
+The Three Questions
+What, if anything, did you learn today?
+What, if anything, surprised you today?
+What, if anything, will you do differently in the future?
+
+
+# THE GAME!
 
 The game consists of 10 frames as shown above.  In each frame the player has
 two opportunities to knock down 10 pins.  The score for the frame is the total
@@ -75,7 +94,7 @@ Frame Roll  Knocked-down-pins Total-score Notes
 4     1     5
 4     2     5                 49          Spare: 10 pins plus bonus of 10 from next roll (roll 1 frame 5)
 5     1     10                            Strike
-5     2     x                 60          Strike: 10 pins plus bonus of 1 from next frame (rolls 1 and 2 from frame 6)
+5     2                       60          Strike: 10 pins plus bonus of 1 from next frame (rolls 1 and 2 from frame 6)
 6     1     0                             Bad luck
 6     2     1                 61
 7     1     7
