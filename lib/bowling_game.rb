@@ -22,6 +22,8 @@ class Frame
   end
 
   def handle_roll(pins)
+    return self if !have_room? && number == 10
+
     @prior_frame && @prior_frame.handle_future_roll(pins)
 
     if have_room?

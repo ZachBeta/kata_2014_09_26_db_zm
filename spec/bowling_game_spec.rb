@@ -67,7 +67,18 @@ describe BowlingGame do
     expect(bowling_game.score).to eq 30
   end
 
-  it 'knows game over'
+  it 'stops caring after game over' do
+    10.times do
+      bowling_game.roll(1)
+      bowling_game.roll(1)
+    end
+
+    expect(bowling_game.score).to eq(20)
+
+    expect {
+      bowling_game.roll(rand(10))
+    }.to change { bowling_game.score }.by(0)
+  end
 
   it 'scores a perfect game' do
     9.times do
