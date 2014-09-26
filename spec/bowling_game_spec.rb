@@ -24,4 +24,11 @@ describe BowlingGame do
 
 		expect(bowling_game.score).to eq(2)
 	end
+
+	it 'can score a strike correctly' do
+		bowling_game.roll(10)
+		bowling_game.roll(1)
+		bowling_game.roll(2)
+		expect(bowling_game.score).to eq(16)
+	end
 end
