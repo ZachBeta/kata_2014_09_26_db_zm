@@ -14,8 +14,14 @@ class BowlingGame
   end
 end
 
+class NullFrame
+  def handle_future_roll(pins); end
+  def score; 0; end
+  def number; 0; end
+end
+
 class Frame
-  def initialize(prior_frame = nil)
+  def initialize(prior_frame = NullFrame.new)
     @prior_frame = prior_frame
     @rolls = []
     @future_rolls = []
@@ -24,7 +30,7 @@ class Frame
   def handle_roll(pins)
     return self if !have_room? && number == 10
 
-    @prior_frame && @prior_frame.handle_future_roll(pins)
+    @prior_frame.handle_future_roll(pins)
 
     if have_room?
       stash(pins)
@@ -41,12 +47,12 @@ class Frame
       @future_rolls << pins
     end
 
-    @prior_frame && @prior_frame.handle_future_roll(pins)
+    @prior_frame.handle_future_roll(pins)
   end
 
   def score
     # puts self.inspect
-    prior_scores = @prior_frame && @prior_frame.score || 0
+    prior_scores = @prior_frame.score
     self_score = @rolls.inject(0, &:+)
     bonus_score = @future_rolls.inject(0, &:+)
 
@@ -58,11 +64,7 @@ class Frame
   end
 
   def number
-    if @prior_frame.nil?
-      1
-    else
-      @prior_frame.number + 1
-    end
+    @prior_frame.number + 1
   end
 
   private
